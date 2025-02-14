@@ -1,0 +1,32 @@
+{
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true,
+			"correctness": {
+				"noUnusedVariables": {
+					"level": "error",
+					"fix": "none"
+				},
+				"noUnusedImports": {
+					"level": "error",
+					"fix": "none"
+				}
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"jsxQuoteStyle": "single",
+			"quoteStyle": "single",
+			"semicolons": "asNeeded"
+		}
+	}
+}
