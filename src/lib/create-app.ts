@@ -18,7 +18,6 @@ export function createApp() {
 
 			transport: {
 				target: 'pino-pretty',
-
 				options: {
 					colorize: true,
 					translateTime: 'yyyy-MM-dd HH:mm:ss',

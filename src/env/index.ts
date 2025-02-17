@@ -9,9 +9,15 @@ const envSchema = z.object({
 	DATABASE_USER: z.string(),
 	DATABASE_PASSWORD: z.string(),
 	DATABASE_NAME: z.string(),
-	LOG_LEVEL: z
-		.enum(['fatal', 'error', 'warn', 'info', 'debug', 'trace', 'silent'])
-		.default('debug'),
+	LOG_LEVEL: z.enum([
+		'fatal',
+		'error',
+		'warn',
+		'info',
+		'debug',
+		'trace',
+		'silent',
+	]),
 })
 
 const _env = envSchema.safeParse(process.env)

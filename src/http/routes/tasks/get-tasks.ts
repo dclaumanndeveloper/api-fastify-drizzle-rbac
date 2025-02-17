@@ -15,16 +15,8 @@ const schema = {
 	description: 'list users tasks ',
 	operationId: 'getListOfTasks',
 	querystring: z.object({
-		limit: z
-			.string()
-			.default('10')
-			.transform(Number)
-			.refine((val) => val > 0, { message: 'Limit must be a positive number' }),
-		page: z
-			.string()
-			.default('1')
-			.transform(Number)
-			.refine((val) => val > 0, { message: 'Page must be a positive number' }),
+		limit: z.string().transform(Number),
+		page: z.string().transform(Number),
 	}),
 	response: {
 		200: z.object({
@@ -72,6 +64,7 @@ export const getTasks = async (app: FastifyInstance) => {
 			}
 
 			const { limit, page } = request.query
+
 			const offset = (page - 1) * limit
 
 			const [tasksCount] = await db

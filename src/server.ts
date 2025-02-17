@@ -9,3 +9,6 @@ app
 	.catch((err) => {
 		app.log.error({ err }, 'the server could not start.')
 	})
+	.finally(() => {
+		console.log(`HTTP server is running on: http://localhost:${env.PORT}`)
+	})

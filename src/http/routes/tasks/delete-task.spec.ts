@@ -17,7 +17,7 @@ describe('Delete a new task', () => {
 	})
 
 	it('should delete a task', async () => {
-		await supertest(app.server)
+		const newTask = await supertest(app.server)
 			.post('/tasks')
 			.set('Authorization', `Bearer ${token}`)
 			.send({
@@ -25,11 +25,19 @@ describe('Delete a new task', () => {
 				description: 'About the task',
 			})
 
+		expect(newTask.status).toBe(201)
+
 		const allTasks = await supertest(app.server)
-			.get('/tasks?limite=10&page=1')
+			.get('/tasks?limit=10&page=1')
 			.set('Authorization', `Bearer ${token}`)
 
-		const taskId = allTasks.body.tasks[0].id
+		expect(allTasks.status).toBe(200)
+
+		const taskId = allTasks.body.tasks.find(
+			(task: { id: string }) => typeof task.id === 'string',
+		)
+
+		expect(taskId.id).toBeDefined()
 
 		const res = await supertest(app.server)
 			.delete(`/tasks/${taskId}`)
@@ -47,12 +55,14 @@ describe('Delete a new task', () => {
 			})
 
 		const allTasks = await supertest(app.server)
-			.get('/tasks?limite=10&page=1')
+			.get('/tasks?limit=10&page=1')
 			.set('Authorization', `Bearer ${token}`)
 
-		const taskId = allTasks.body.tasks[0].id
+		const taskId = allTasks.body.tasks.find(
+			(task: { id: string }) => typeof task.id === 'string',
+		)
 
-		const res = await supertest(app.server).delete(`/tasks/:${taskId}`)
+		const res = await supertest(app.server).delete(`/tasks/:${taskId.id}`)
 
 		expect(res.status).toEqual(401)
 	})

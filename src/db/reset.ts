@@ -3,8 +3,8 @@ import * as schema from '@/db/schema'
 import { reset } from 'drizzle-seed'
 import { db } from './connection'
 
-import * as readlineSync from 'readline-sync'
 import { app } from '@/app'
+import * as readlineSync from 'readline-sync'
 
 const answer = readlineSync.question(
 	console.log('Do you want to delete ALL data? (y/n): '),

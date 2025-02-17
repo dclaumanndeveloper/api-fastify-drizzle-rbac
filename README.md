@@ -3,7 +3,7 @@
 API Full Typescript and OpenAapi  with Fastify, Drizzle and JWT auth + RBAC 
 
 ## Prerequisites
-- Ensure you have the following installed:
+- Ensure you have the following installed in your machine:
   - Docker
   - pnpm
   - biome
@@ -14,7 +14,7 @@ API Full Typescript and OpenAapi  with Fastify, Drizzle and JWT auth + RBAC
 
 - `Fastify` for full typescript development integration.
 
-- `Docker` for Development & Production: Provides a fully scalable and customizable environment for running the application efficiently.
+- `Docker` for Development provides a Postgres database.
 
 - `Vitest` for code reliability and correctness with a fast and efficient test runner.
 
@@ -23,8 +23,6 @@ API Full Typescript and OpenAapi  with Fastify, Drizzle and JWT auth + RBAC
 - `Scalar` for API Documentation automatically generates API documentation for better maintainability and usability.
 
 - `Casl`: Implements a flexible role-based access control system for secure user permissions.
-
-- `Pino`: Implements a flexible role-based access control system for secure user permissions.
 
 
 ## Project Setup Guide
@@ -35,36 +33,36 @@ API Full Typescript and OpenAapi  with Fastify, Drizzle and JWT auth + RBAC
 Copy the example environment file and update it with the necessary environment variables:
 
 ```bash
-cp .env.example .env
+cp .env.exemple .env
 ```
 
-Run the application and services `in dev mode`:
-
-```bash
-docker compose -f docker-compose.dev.yml up -d
-```
-
-Run the application and services `in watch mode`:
-
-```bash 
-docker compose -f docker-compose.dev.yml --watch
-```
-
-Run the application and services `for production`:
+You can run the container to start database localy
+or if you prefer can or if you prefer, you can `connect to an external` by also filling in the DB's `credentials` on `ENV`
 
 ```bash
 docker compose up -d
 ```
 
+Generate the database schema and push to
+
+```bash
+pnpm db:push
+```
+You seed the DB with initial users.
+
+```bash
+pnpm db:seed
+```
+
 #### Access the development server:
 
 ```bash
-http://localhost:3333
+http://localhost:${PORT}
 ```
 #### Access the api docs:
 
 ```bash
-http://localhost:3333/docs
+http://localhost:${PORT}/docs
 ```
 
 #### Access the database
@@ -142,8 +140,6 @@ To ensure consistency in formatting and linting, Biome is set as the default too
 - Drizzle https://orm.drizzle.team/docs/kit-overview
 - Zod https://zod.dev/
 - readline-sync  https://github.com/anseki/readline-sync
-- Pino https://github.com/pinojs/pino
-- Pino Pritty https://github.com/pinojs/pino-pretty
 - Micro UUID https://github.com/paralleldrive/cuid2
 - Biome https://biomejs.dev/
 - Vitest https://vitest.dev/

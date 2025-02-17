@@ -26,22 +26,7 @@ describe('Get list of tasks', () => {
 			})
 
 		const tasks = await supertest(app.server)
-			.get('/tasks?limite=10&page=1')
-			.set('Authorization', `Bearer ${token}`)
-		expect(tasks.body.tasks).toBeTypeOf('object')
-	})
-
-	it('should get a list of tasks without limit & page', async () => {
-		await supertest(app.server)
-			.post('/tasks')
-			.set('Authorization', `Bearer ${token}`)
-			.send({
-				title: 'New task',
-				description: 'About the task',
-			})
-
-		const tasks = await supertest(app.server)
-			.get('/tasks?limite=10&page=1')
+			.get('/tasks?limit=10&page=1')
 			.set('Authorization', `Bearer ${token}`)
 		expect(tasks.body.tasks).toBeTypeOf('object')
 	})
